@@ -181,24 +181,35 @@ function App() {
     }
 
     // Generate claim transactions
-    for (const reward of groupedRewardsData) {
-      const { venft_id, feeBribeAddress, tokens } = reward;
+    for (const venftId of new Set(groupedRewardsData.map(r => r.venft_id))) {
+      const rewardsForVenft = groupedRewardsData.filter(r => r.venft_id === venftId);
+      
+      const uniqueFeeBribeAddresses = [];
+      const correspondingTokenLists = [];
 
-      if (!processedVenftIds.has(venft_id)) {
-        const claimBribesData = claimBribesContract.interface.encodeFunctionData('claimBribes', [
-          [feeBribeAddress],
-          [tokens],
-          venft_id
-        ]);
-
-        transactions.push({
-          to: CLAIM_BRIBES_CONTRACT,
-          data: claimBribesData,
-          value: '0'
-        });
-
-        processedVenftIds.add(venft_id);
+      for (const reward of rewardsForVenft) {
+        const { feeBribeAddress, tokens } = reward;
+        
+        if (!uniqueFeeBribeAddresses.includes(feeBribeAddress)) {
+          uniqueFeeBribeAddresses.push(feeBribeAddress);
+          correspondingTokenLists.push(tokens);
+        } else {
+          const index = uniqueFeeBribeAddresses.indexOf(feeBribeAddress);
+          correspondingTokenLists[index] = [...new Set([...correspondingTokenLists[index], ...tokens])];
+        }
       }
+
+      const claimBribesData = claimBribesContract.interface.encodeFunctionData('claimBribes', [
+        uniqueFeeBribeAddresses,
+        correspondingTokenLists,
+        venftId
+      ]);
+
+      transactions.push({
+        to: CLAIM_BRIBES_CONTRACT,
+        data: claimBribesData,
+        value: '0'
+      });
     }
 
     setSafeTransactionData(transactions);
