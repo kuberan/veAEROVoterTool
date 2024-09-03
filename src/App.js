@@ -38,6 +38,8 @@ function App() {
     setResult(null);
     setRewardsData([]);
     setError(null);
+    setSafeTransactionData(null); // Clear the safe transaction data
+    setTokenDecimals({}); // Clear the token decimals
 
     try {
       const provider = new ethers.providers.JsonRpcProvider('https://mainnet.base.org');
@@ -64,7 +66,7 @@ function App() {
       setRewardsData(rewardsResults.flat());
 
       // Fetch token decimals
-      const uniqueTokens = [...new Set(rewardsData.map(reward => reward.token))];
+      const uniqueTokens = [...new Set(rewardsResults.flat().map(reward => reward.token))];
       const decimalsPromises = uniqueTokens.map(async (tokenAddress) => {
         const tokenContract = new ethers.Contract(tokenAddress, ['function decimals() view returns (uint8)'], provider);
         const decimals = await tokenContract.decimals();
