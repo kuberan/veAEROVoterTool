@@ -1,70 +1,33 @@
-# Getting Started with Create React App
+This is personal productivity tool I built to bulk claim veAERO voter rewards (bribes and incentives)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+This is a React App built using cursor.com in less than an hour
 
-In the project directory, you can run:
+npm install
 
-### `npm start`
+npm start
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![image](https://github.com/user-attachments/assets/67dc6fc9-be36-4d53-ab7e-a7031a5d9b6d)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Every week veAERO voters claim rewards. As of Sep 2024, it is not possible to split veAERO NFTs and for easier liqiduity most veAERO voters hold quite a bit of separate veAERO NFTs.
 
-### `npm test`
+For eg: someone who has 50+ AERO NFTs has to click and sign 50 different transactions every week. If you are holding your veNFTs on Gnosis Safe, this app creates a batch transaction that you can use to claim all the rewards in a single transaction. You can just copy paste the generated JSON to Gnosis Safe Transaction Builder.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Use the Aerodrome **Sugar Contracts** to derive the rewards to be claimed
+https://github.com/aerodrome-finance/sugar
+1) **0x4c5d3925fe65DFeB5A079485136e4De09cb664A5**
+byAccount() method
+2) **0x68c19e13618c41158fe4baba1b8fb3a9c74bdb0a**
+rewardsByAddress() method
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Then uses the Voter Contract **0x16613524e02ad97eDfeF371bC883F2F5d6C480A5** to create multiple claimBribe() function calls for each veAERO NFT and batch all transactions into one
+![image](https://github.com/user-attachments/assets/dbebed1c-c55a-4c37-808a-6f05bb0890bc)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+**Token Approval for Aerodrome Universal Router**
+(Optional) This is an optional you can skip if you dont want to swap
+In the end all the claimed tokens are executed with allowance for Aerodrome Universal Router **0x6Cb442acF35158D5eDa88fe602221b67B400Be3E**  that can be used to swap to token of your choice.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
