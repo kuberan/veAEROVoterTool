@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/kuberan/veAEROVoterTool/static/css/main.96bb8687.css",
+    "main.js": "/kuberan/veAEROVoterTool/static/js/main.aabcca5c.js",
+    "static/js/453.82678a44.chunk.js": "/kuberan/veAEROVoterTool/static/js/453.82678a44.chunk.js",
+    "index.html": "/kuberan/veAEROVoterTool/index.html",
+    "main.96bb8687.css.map": "/kuberan/veAEROVoterTool/static/css/main.96bb8687.css.map",
+    "main.aabcca5c.js.map": "/kuberan/veAEROVoterTool/static/js/main.aabcca5c.js.map",
+    "453.82678a44.chunk.js.map": "/kuberan/veAEROVoterTool/static/js/453.82678a44.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.96bb8687.css",
+    "static/js/main.aabcca5c.js"
+  ]
+}
