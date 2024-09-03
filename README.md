@@ -1,3 +1,5 @@
+This is personal productivity tool I built to bulk claim veAERO voter rewards (bribes and incentives)
+
 
 This is a React App built using cursor.com in less than an hour
 
