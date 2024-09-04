@@ -107,3 +107,43 @@ pre {
   padding: 15px;
   border-radius: 5px;
 }
+
+.bulk-vote-section {
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.bulk-vote-section h2 {
+  margin-bottom: 1rem;
+}
+
+.bulk-vote-section input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+}
+
+.bulk-vote-section button {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  background-color: #61dafb;
+  color: #282c34;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.bulk-vote-section button:hover {
+  background-color: #4fa8d5;
+}
+
+.bulk-vote-section button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
