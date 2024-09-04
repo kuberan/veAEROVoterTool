@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/veAEROVoterTool/static/css/main.1480970f.css",
-    "main.js": "/veAEROVoterTool/static/js/main.40d9f6b1.js",
+    "main.css": "/veAEROVoterTool/static/css/main.3b16230b.css",
+    "main.js": "/veAEROVoterTool/static/js/main.14409f36.js",
     "static/js/453.82678a44.chunk.js": "/veAEROVoterTool/static/js/453.82678a44.chunk.js",
     "index.html": "/veAEROVoterTool/index.html",
-    "main.1480970f.css.map": "/veAEROVoterTool/static/css/main.1480970f.css.map",
-    "main.40d9f6b1.js.map": "/veAEROVoterTool/static/js/main.40d9f6b1.js.map",
+    "main.3b16230b.css.map": "/veAEROVoterTool/static/css/main.3b16230b.css.map",
+    "main.14409f36.js.map": "/veAEROVoterTool/static/js/main.14409f36.js.map",
     "453.82678a44.chunk.js.map": "/veAEROVoterTool/static/js/453.82678a44.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1480970f.css",
-    "static/js/main.40d9f6b1.js"
+    "static/css/main.3b16230b.css",
+    "static/js/main.14409f36.js"
   ]
 }
