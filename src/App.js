@@ -442,15 +442,19 @@ function App() {
           <div>
             <button onClick={generateSafeTransaction}>Generate Safe Transaction</button>
             {safeTransactionData && (
-              <div className="json-container">
+              <div className="json-section">
                 <h3>Safe Transaction Data:</h3>
-                <pre>{JSON.stringify(safeTransactionData, null, 2)}</pre>
-                <button className="copy-button" onClick={() => copyToClipboard(JSON.stringify(safeTransactionData, null, 2))}>
-                  {copySuccess || 'Copy to Clipboard'}
-                </button>
-                <button className="download-button" onClick={handleDownloadSafeTransaction}>
-                  Download JSON
-                </button>
+                <div className="json-container">
+                  <pre>{JSON.stringify(safeTransactionData, null, 2)}</pre>
+                </div>
+                <div className="button-container">
+                  <button className="copy-button" onClick={() => copyToClipboard(JSON.stringify(safeTransactionData, null, 2))}>
+                    {copySuccess || 'Copy to Clipboard'}
+                  </button>
+                  <button className="download-button" onClick={handleDownloadSafeTransaction}>
+                    Download JSON
+                  </button>
+                </div>
               </div>
             )}
           </div>
@@ -478,15 +482,19 @@ function App() {
         </div>
 
         {bulkVoteData && (
-          <div className="json-container">
+          <div className="json-section">
             <h3>Bulk Vote Transaction Data:</h3>
-            <pre>{JSON.stringify(bulkVoteData, null, 2)}</pre>
-            <button className="copy-button" onClick={() => copyToClipboard(JSON.stringify(bulkVoteData, null, 2))}>
-              {copySuccess || 'Copy to Clipboard'}
-            </button>
-            <button className="download-button" onClick={handleDownloadBulkVote}>
-              Download JSON
-            </button>
+            <div className="json-container">
+              <pre>{JSON.stringify(bulkVoteData, null, 2)}</pre>
+            </div>
+            <div className="button-container">
+              <button className="copy-button" onClick={() => copyToClipboard(JSON.stringify(bulkVoteData, null, 2))}>
+                {copySuccess || 'Copy to Clipboard'}
+              </button>
+              <button className="download-button" onClick={handleDownloadBulkVote}>
+                Download JSON
+              </button>
+            </div>
           </div>
         )}
       </header>
@@ -495,6 +503,7 @@ function App() {
 }
 
 export default App;
+
 const styles = `
   .App {
     text-align: center;
@@ -542,27 +551,41 @@ const styles = `
     font-size: 0.75em; /* Adjust table text size */
   }
 
-  .json-container {
-    text-align: left;
+  .json-section {
     width: 100%;
-    overflow-x: auto;
-    background-color: #1e1e1e; /* Dark background for JSON container */
-    border-radius: 4px;
-    padding: 10px;
+    max-width: 600px;
     margin-top: 10px;
   }
 
-  .json-container pre {
-    color: #d4d4d4; /* Light grey text for better contrast */
-    font-size: 0.6em; /* Adjust JSON text size */
-    margin: 0;
+  .json-container {
+    text-align: left;
+    width: 100%;
+    height: 300px;
+    overflow: auto;
+    background-color: #1e1e1e;
+    border-radius: 4px;
+    padding: 10px;
+    box-sizing: border-box;
   }
 
-  .copy-button {
-    margin-top: 5px;
-    font-size: 0.75em; /* Adjust button text size */
-    background-color: #4CAF50; /* Green background */
-    color: white; /* White text */
+  .json-container pre {
+    color: #d4d4d4;
+    font-size: 0.6em;
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .copy-button, .download-button {
+    font-size: 0.75em;
+    background-color: #4CAF50;
+    color: white;
     border: none;
     padding: 5px 10px;
     border-radius: 3px;
