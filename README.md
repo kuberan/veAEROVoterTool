@@ -1,4 +1,4 @@
-veAERO Bulk Transaction Generator Tool (Gnosis Safe)
+**veAERO Bulk Transaction Generator Tool (Gnosis Safe)**
 
 This is a personal productivity tool I built to generate bulk transactions for different voter operations (claimBribes, vote) for veAERO owners.
 
