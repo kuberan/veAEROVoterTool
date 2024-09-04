@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ethers } from 'ethers';
 import './App.css';
+import { Helmet } from 'react-helmet';
 
 const contractAddress = '0x4c5d3925fe65DFeB5A079485136e4De09cb664A5';
 const contractABI = [{"stateMutability":"nonpayable","type":"constructor","inputs":[{"name":"_voter","type":"address"},{"name":"_rewards_distributor","type":"address"},{"name":"_gov","type":"address"}],"outputs":[]},{"stateMutability":"view","type":"function","name":"all","inputs":[{"name":"_limit","type":"uint256"},{"name":"_offset","type":"uint256"}],"outputs":[{"name":"","type":"tuple[]","components":[{"name":"id","type":"uint256"},{"name":"account","type":"address"},{"name":"decimals","type":"uint8"},{"name":"amount","type":"uint128"},{"name":"voting_amount","type":"uint256"},{"name":"governance_amount","type":"uint256"},{"name":"rebase_amount","type":"uint256"},{"name":"expires_at","type":"uint256"},{"name":"voted_at","type":"uint256"},{"name":"votes","type":"tuple[]","components":[{"name":"lp","type":"address"},{"name":"weight","type":"uint256"}]},{"name":"token","type":"address"},{"name":"permanent","type":"bool"},{"name":"delegate_id","type":"uint256"},{"name":"managed_id","type":"uint256"}]}]},{"stateMutability":"view","type":"function","name":"byAccount","inputs":[{"name":"_account","type":"address"}],"outputs":[{"name":"","type":"tuple[]","components":[{"name":"id","type":"uint256"},{"name":"account","type":"address"},{"name":"decimals","type":"uint8"},{"name":"amount","type":"uint128"},{"name":"voting_amount","type":"uint256"},{"name":"governance_amount","type":"uint256"},{"name":"rebase_amount","type":"uint256"},{"name":"expires_at","type":"uint256"},{"name":"voted_at","type":"uint256"},{"name":"votes","type":"tuple[]","components":[{"name":"lp","type":"address"},{"name":"weight","type":"uint256"}]},{"name":"token","type":"address"},{"name":"permanent","type":"bool"},{"name":"delegate_id","type":"uint256"},{"name":"managed_id","type":"uint256"}]}]},{"stateMutability":"view","type":"function","name":"byId","inputs":[{"name":"_id","type":"uint256"}],"outputs":[{"name":"","type":"tuple","components":[{"name":"id","type":"uint256"},{"name":"account","type":"address"},{"name":"decimals","type":"uint8"},{"name":"amount","type":"uint128"},{"name":"voting_amount","type":"uint256"},{"name":"governance_amount","type":"uint256"},{"name":"rebase_amount","type":"uint256"},{"name":"expires_at","type":"uint256"},{"name":"voted_at","type":"uint256"},{"name":"votes","type":"tuple[]","components":[{"name":"lp","type":"address"},{"name":"weight","type":"uint256"}]},{"name":"token","type":"address"},{"name":"permanent","type":"bool"},{"name":"delegate_id","type":"uint256"},{"name":"managed_id","type":"uint256"}]}]},{"stateMutability":"view","type":"function","name":"voter","inputs":[],"outputs":[{"name":"","type":"address"}]},{"stateMutability":"view","type":"function","name":"token","inputs":[],"outputs":[{"name":"","type":"address"}]},{"stateMutability":"view","type":"function","name":"ve","inputs":[],"outputs":[{"name":"","type":"address"}]},{"stateMutability":"view","type":"function","name":"dist","inputs":[],"outputs":[{"name":"","type":"address"}]},{"stateMutability":"view","type":"function","name":"gov","inputs":[],"outputs":[{"name":"","type":"address"}]}];
@@ -369,8 +370,11 @@ function App() {
 
   return (
     <div className="App">
+      <Helmet>
+        <title>AERO Batch Tool</title>
+      </Helmet>
       <header className="App-header">
-        <h1>Aerodrome Bulk Transaction Generator</h1>
+        <h1>veAERO Batch Txn Generator</h1>
         <p className="description">
           This tool generates a batch transaction that can be submitted to Gnosis Safe Transaction Builder Tool to claim rewards or do bulk voting for Aerodrome Finance
         </p>
@@ -388,7 +392,7 @@ function App() {
         </form>
         {loading && <div className="loader">Loading...</div>}
         {error && <div className="error">{error}</div>}
-        {groupedRewardsData.length > 0 && (
+        {result && (
           <div className="result small-text">
             <h2>Total Rewards by Token:</h2>
             <table>
