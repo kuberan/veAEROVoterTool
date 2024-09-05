@@ -124,15 +124,16 @@ function App() {
     const grouped = {};
     rewardsData.forEach(reward => {
       const feeBribeAddress = getNonZeroAddress(reward.fee, reward.bribe);
-      if (!grouped[feeBribeAddress]) {
-        grouped[feeBribeAddress] = {
+      const key = `${reward.venft_id.toString()}-${feeBribeAddress}`;
+      if (!grouped[key]) {
+        grouped[key] = {
           venft_id: reward.venft_id.toString(),
           lp: reward.lp,
           tokens: new Set(),
           feeBribeAddress
         };
       }
-      grouped[feeBribeAddress].tokens.add(reward.token);
+      grouped[key].tokens.add(reward.token);
     });
 
     return Object.values(grouped).map(item => ({
@@ -212,14 +213,21 @@ function App() {
       });
     }
 
-    // Generate claim transactions
-    for (const venftId of new Set(groupedRewardsData.map(r => r.venft_id))) {
-      const rewardsForVenft = groupedRewardsData.filter(r => r.venft_id === venftId);
-      
+    // Group rewards by venft_id
+    const rewardsByVenftId = groupedRewardsData.reduce((acc, reward) => {
+      if (!acc[reward.venft_id]) {
+        acc[reward.venft_id] = [];
+      }
+      acc[reward.venft_id].push(reward);
+      return acc;
+    }, {});
+
+    // Generate claim transactions for each venft_id
+    for (const [venftId, rewards] of Object.entries(rewardsByVenftId)) {
       const uniqueFeeBribeAddresses = [];
       const correspondingTokenLists = [];
 
-      for (const reward of rewardsForVenft) {
+      for (const reward of rewards) {
         const { feeBribeAddress, tokens } = reward;
         
         if (!uniqueFeeBribeAddresses.includes(feeBribeAddress)) {
@@ -253,7 +261,7 @@ function App() {
         contractInputsValues: {
           _bribes: uniqueFeeBribeAddresses,
           _tokens: correspondingTokenLists,
-          _tokenId: venftId.toString()
+          _tokenId: venftId
         }
       });
     }
